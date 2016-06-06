@@ -36,22 +36,6 @@ angular.module('app',["ngResource"])
             console.log($scope.data);
         };
         
-        // $http.jsonp(API_BASE_URL).then(function (result) {
-        //     $scope.data=result.data;
-        //     console.log({type:"info",data:$scope.data,description:"API request success"});
-        // })
-        
-        // $scope.loadData = function(query = defaultQuery){
-        //     // dataResource.$load(query).then(function (results) {
-        //     //    $scope.data=results.data; 
-        //     //    console.log({type:"info",data:$scope.data,description:"API request success"});
-        //     // });
-        //     var r;
-        //     dataResource.load(defaultQuery).then(function (params) {
-        //         r=params.data;
-        //     });
-        //     console.log(r);
-        // };
         
         $scope.loadData();
     });
