@@ -66,23 +66,29 @@ angular.module("app")
               $scope.beginPage+=$scope.endPage-lastEndPage;
               $scope.loadPages();
           }
-        //   if(newPage<$scope.selectedPage){
-        //       if($scope.isLeftLoadable(newPage)){
-        //           $scope.beginPage--;
-        //           $scope.endPage--;
-        //           $scope.loadPages();
-        //       }
-        //   }else{
-        //       if($scope.isRightLoadable(newPage)){
-        //           $scope.beginPage++;
-        //           $scope.endPage++;
-        //           $scope.loadPages();
-        //       }
-        //   }
           $scope.selectedPage=newPage;
           
           //broadcast pageSelected
       };
+      
+      $scope.next=function(){
+          if($scope.endPage<$scope.maxPage){
+            $scope.beginPage++;
+            $scope.endPage++;
+            $scope.selectedPage++;
+            $scope.loadPages();
+          }
+          
+      }
+      $scope.prev=function(){
+          if($scope.beginPage>1){
+            $scope.beginPage--;
+            $scope.endPage--;
+            $scope.selectedPage--;
+            $scope.loadPages();
+          }
+          
+      }
      
       
       $scope.getPageClass=function(page){
