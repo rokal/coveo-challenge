@@ -1,0 +1,23 @@
+body{
+  background-color: lightgray;  
+}
+
+
+.card-img-top{
+    height: 15rem;
+}
+.card-block{
+    height: 250px;
+    text-align: center;
+}
+.card-block > a{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.card{
+    margin-top:-11px 
+}
+.tag{
+    font-size: 0.9rem;
+    padding: 2px;
+}

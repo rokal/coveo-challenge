@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>app</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.css" />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body ng-controller="appCtrl" ng-cloak>
+        
+        <nav class="navbar navbar-light" >
+            <div class="container">
+                <div class="input-group input-group-lg" id="search-bar">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn ">
+                        <button class="btn btn-info " type="button">
+                            <span class="ion-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+        </nav>
+                
+        <div class="container">
+            <div class="col-md-9 col-md-offset-3 result m-b-1" ng-show="data.results.length">
+                <span class="center">{{data.totalCount}} result(s) found in {{data.duration}} ms</span>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6 card " ng-repeat="result in data.results">
+                    <img class="card-img-top center-block" ng-src="{{result.raw.tpthumbnailuri}}" alt="drink phto">
+                    <div class="card-block">
+                        <a target="_blank" ng-href="{{result.raw.sysclickableuri}}">{{result.title}}</a><br/>
+                        <span  class="label label-success tag ion-wineglass " ng-show="{{result.raw.tpparticularitedeservice.length}}">  
+                            {{result.raw.tpparticularitedeservice}} {{result.raw.tptemperaturedeservice}} <br/></span>
+                        <span class="label label-default">{{result.raw.tppays}} ({{result.raw.tpregion}}) en {{result.raw.tpmillesime}} | 
+                            {{result.raw.tpformat }} | {{result.raw.tpprixnormal }} {{result.row.tpnouveaute}}
+                        </span>
+                        <span class="label label-danger">{{result.raw.tpcategorie}}</span>
+                        <span class="label label-warning">produit par {{result.raw.tpproducteur}} <br/></span>
+                        <span class="bg-success tag"><i class="ion-information-circled"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-xs-right">
+                <ul class="pagination ">
+                    <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    </li>
+                    <li class="page-item active">
+                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+   
+        </div>
+        
+        
+        
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="app.js"></script> 
+        
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="libs/view-port-bug.js"></script>
+        <!--<script src="libs/tether.min.js"></script>-->
+            
+        <script>
+        //     $(function(){
+        //         $('[data-toggle="tooltip"]').tooltip();
+        //     });
+        // </script>
+    </body>
+</html>

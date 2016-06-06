@@ -1,0 +1,24 @@
+{
+  "name": "saq",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Roland <rskalmogo@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-mocks": "^1.5.6",
+    "angular-resource": "^1.5.6",
+    "bootstrap": "v4.0.0-alpha.2",
+    "Ionicons": "ionicons#^2.0.1"
+  }
+}
