@@ -1,17 +1,16 @@
 angular.module('app')
        .controller('appCtrl',appCtrl);
 
-function appCtrl(dataService,$scope){
-    // $scope.data=[];
-    // $scope.data=dataService.data;
-    // dataService.loadData.list().$promise.then(function(results){
-    //     $scope.data=results;
-    //     dataService.updateQuery({q:"biere rousse"});
-    // });
+function appCtrl(dataFactory,$scope){
     
-    dataService.loadData().success(function(resu){
-        console.log(resu);
-        $scope.data=resu;
+    dataFactory.updateData();
+     $scope.search=function () {
+        dataFactory.updateData($scope.query);
+    }
+    
+    $scope.$watch(function () { return dataFactory.getData(); }, function (newValue, oldValue) {
+        if (newValue !== oldValue) $scope.data = newValue;
     });
+    
 }
         
