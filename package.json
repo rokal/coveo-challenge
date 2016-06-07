@@ -6,9 +6,12 @@
   "directories": {
     "test": "tests"
   },
+  "engines": {
+    "node":"6.1.0"
+  },
   "scripts": {
     "test": "karma start karma.conf.js",
-     "start": "http-server -a localhost -p 4000 -c-1 ./app"
+    "start": "http-server -a localhost -p 4000 -c-1 ./app"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +23,9 @@
     "karma-jasmine": "^1.0.2"
   },
   "dependencies": {
-    "bower": "^1.7.9"
+    "bower": "^1.7.9",
+    "express": "^4.13.4",
+    "gzippo": "^0.2.0",
+    "morgan": "^1.7.0"
   }
 }
