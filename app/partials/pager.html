@@ -1,5 +1,5 @@
 <div class="pull-xs-right" ng-controller="pagerCtrl">
-    <ul class="pagination ">
+    <ul class="pagination " ng-show="data.length>0">
         <li class="page-item" ng-class="prevDisabled()">
             <a class="page-link" href="#" aria-label="Previous" ng-click="prev()">
                 <span aria-hidden="true">&laquo;</span>
