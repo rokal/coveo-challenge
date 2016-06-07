@@ -1,31 +1,29 @@
 angular.module("app")
-    .controller('appCtrl',function($scope,$resource,API_BASE_URL ){
-        var defaultQuery={
+    .factory("ResData",function($resource,API_BASE_URL){
+        return $resource(API_BASE_URL,{},{
+            list:{method:"POST", params:{"q":"biere"}}
+        });
+    })
+    .controller('appCtrl',function($scope,ResData ){
+        $scope.defaultQuery={
             sortField:"@tpmillesime",
             sortCriteria:"fielddescending"
         };
         
         // var query=angular.copy(defaultQuery);
         var query={};
-        query.q="biere";
+        // query.q="biere";
         var queryString=angular.toJson(query);
-        console.log(angular.toJson(query));
+        // console.log(angular.toJson(query));
         
         $scope.data=[];
-        
-        $scope.dataResource=$resource(API_BASE_URL,{},{
-            list:{method:"POST", params:{"q":"biere"}}
+        ResData.list().$promise.then(function(result){
+            $scope.data = result; 
+            // console.log(result);
         });
         
-        $scope.loadData=function(){
-            $scope.data= $scope.dataResource.list();
-            console.log($scope.data);
-        };
-        
-        
-        $scope.loadData();
     })
-  .controller("pagerController",function($rootScope,$scope,CSS_ACTIVE_CLASS){
+  .controller("pagerController",function($rootScope,$scope,CSS_ACTIVE_CLASS,ResData){
       $scope.selectedPage=1;
       $scope.beginPage=1;
       $scope.endPage=5;
@@ -47,7 +45,13 @@ angular.module("app")
           return $scope.selectedPage- newPage>0 && $scope.beginPage>1;
       }
       
-      $scope.maxPage=$scope.numberOfPages(100);
+      $scope.data=[];
+      
+      ResData.list().$promise.then(function(result){
+            $scope.data = result; 
+            $scope.maxPage=Math.ceil($scope.data.totalCount/$scope.pageSize);
+        });
+      
       
       $scope.isRightLoadable=function (newPage){
           return newPage-$scope.selectedPage >0 && $scope.endPage<$scope.maxPage;
@@ -105,4 +109,18 @@ angular.module("app")
       
       $scope.loadPages();
   });
+  
+  AppCtrl.$inject=['dataService'];
+  function AppCtrl(dataService){
+      this.data=dataService.data;
+  }
+  
+  
+  function dataService(){
+      this.data=[];
+      this.queryObj={};
+      this.queryData=function(){
+          
+      }
+  }
     
