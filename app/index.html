@@ -25,8 +25,11 @@
                 
         <div class="container">
             <div class="col-md-9 col-md-offset-3 result m-b-1" >
+                <span class="m-r-2">
+                    Results: <strong>{{data.query.firstResult+1|number}}-{{data.query.firstResult+data.results.length|number}}</strong>
+                </span>
                 <span class="center" ng-hide="searching">
-                    {{data.totalCount}} result(s) found in {{data.duration | secs}} 
+                    <strong>{{data.totalCount|number}} </strong>total found in <strong>{{data.duration | secs}}</strong> 
                 </span>
                 <span ng-show="searching" class="ion-load-b display-1"></span>
             </div>

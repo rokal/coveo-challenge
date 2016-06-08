@@ -36,11 +36,11 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     }
     
     $scope.isLeftLoadable=function(newPage){
-        return newPage< Math.floor(($scope.endPage+$scope.beginPage)/2);
+        return newPage< Math.floor(($scope.endPage+$scope.beginPage)/2) && $scope.maxPage>10;
     }
     
     $scope.isRightLoadable=function(newPage){
-        return newPage > Math.floor(($scope.endPage+$scope.beginPage)/2);
+        return newPage > Math.floor(($scope.endPage+$scope.beginPage)/2) && $scope.maxPage>10;
     }
     
     $scope.queryNewPage=function(pageNum,actionNewPage){

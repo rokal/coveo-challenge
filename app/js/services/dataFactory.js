@@ -3,7 +3,7 @@ angular.module('app')
            
             var factoryVars = {
                 data: [],
-                queryObj:{}
+                queryObj:{firstResult:0}
             };
 
             return {
@@ -19,6 +19,7 @@ angular.module('app')
                     }
                    
                     $http.post(API_BASE_URL,factoryVars.queryObj).success(function (result) {
+                        result["query"]=factoryVars.queryObj
                         factoryVars.data=result;
                         console.log(result);
                     });
