@@ -8,9 +8,7 @@ describe('Data factory',function () {
 			{name: 'Alcohol Z'}
 		];
         
-    // var query='https://cloudplatform.coveo.com/rest/search?callback=JSON_CALLBACK'+"&access_token="+
-	// 					'6318103b-f9da-437c-854b-9e6f1f44e27b';
-                        
+        
      beforeEach(module('app'));
     
     beforeEach(inject(function(_dataFactory_,_$httpBackend_,API_BASE_URL){
@@ -20,13 +18,6 @@ describe('Data factory',function () {
         
     }));
     
-    //  Verify that there are no outstanding expectations or requests after each test
-    // afterEach(function () {
-    //     $httpBackend.verifyNoOutstandingExpectation();
-    //     $httpBackend.verifyNoOutstandingRequest();
-    // });
-    
-    // Add a custom equality tester before each test
     beforeEach(function() {
         jasmine.addCustomEqualityTester(angular.equals);
     });
@@ -37,9 +28,20 @@ describe('Data factory',function () {
             var result=dataFactory.getData();
             expect(result).toEqual([]);
             
-            // $httpBackend.flush();
+        })
+        
+    });
+    
+    describe('updateData',function(){
+        it('should return list of drinks after update',function(){
+            var result=dataFactory.getData();
+            expect(result).toEqual([]);
             
-            // expect(result).toEqual(drinksData);
+            dataFactory.updateData();
+            $httpBackend.flush(); 
+            
+            result=dataFactory.getData();
+            expect(result).toEqual(drinksData);
         })
     });
 });
