@@ -14,15 +14,25 @@
         </nav>
                 
         <div class="container">
-            <div class="col-md-9 col-md-offset-3 result m-b-1" >
-                <span class="m-r-2">
+            <div class="col-md-9 col-md-offset-3 result m-b-1" ng-hide="data.totalCount==0">
+                <span class="m-r-2" >
                     Results: <strong>{{data.query.firstResult+1|number}}-{{data.query.firstResult+data.results.length|number}}</strong>
                 </span>
                 <span class="center" ng-hide="searching">
                     <strong>{{data.totalCount|number}} </strong>total found in <strong>{{data.duration | secs}}</strong> 
                 </span>
                 <span ng-show="searching" class="ion-load-b display-1"></span>
+                
             </div>
+            
+            <div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="data.totalCount==0">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="reset()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Oups..!</strong> No results matching <strong>{{data.query.q}}</strong>
+            </div>
+           
+            
             <div class="col-md-9">
                 <div class="col-md-6 card " ng-repeat="result in data.results">
                     <img class="card-img-top center-block" ng-src="{{result.raw.tpthumbnailuri}}" alt="drink phto">
