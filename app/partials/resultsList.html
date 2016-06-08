@@ -1,0 +1,13 @@
+                <div class="col-md-6 card " ng-repeat="result in data.results">
+                    <img class="card-img-top center-block" ng-src="{{result.raw.tpthumbnailuri}}" alt="drink phto">
+                    <div class="card-block">
+                        <a target="_blank" ng-href="{{result.raw.sysclickableuri}}">{{result.title}}</a><br/>
+                        <span  class="label label-success tag ion-wineglass " ng-show="{{result.raw.tpparticularitedeservice.length}}">  
+                            {{result.raw.tpparticularitedeservice}} {{result.raw.tptemperaturedeservice}} <br/></span>
+                        <span class="label label-default">{{result.raw.tppays}} ({{result.raw.tpregion}}) en {{result.raw.tpmillesime}} | 
+                            {{result.raw.tpformat }} | {{result.raw.tpprixnormal }} {{result.row.tpnouveaute}}
+                        </span>
+                        <span class="label label-danger">{{result.raw.tpcategorie}}</span>
+                        <span class="label label-warning">produit par {{result.raw.tpproducteur}} <br/></span>
+                    </div>
+                </div>

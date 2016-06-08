@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light" >
+    <div class="container">
+        <div class="input-group input-group-lg" id="search-bar">
+            <input type="text" class="form-control" placeholder="Search for..." ng-model="query.q">
+            <span class="input-group-btn ">
+                <button class="btn btn-info " type="button" ng-click="search()">
+                    <span ng-hide="searching" class="ion-search"></span>
+                    <span ng-show="searching" class="ion-load-a"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    
+</nav>
