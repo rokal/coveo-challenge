@@ -3,6 +3,9 @@ angular.module('app')
 
 function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     
+    $scope.pageSize=6;// to bind with the view
+    $scope.data=[];
+    
     $scope.$watch(function () { return dataFactory.getData(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) $scope.updateView(newValue);
     });
@@ -10,10 +13,7 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     function initVars(){
         $scope.selectedPage=1;
         $scope.beginPage=1;
-        $scope.pages=[];
-        $scope.pageSize=6;
-        $scope.data=[];
-        $scope.data.totalCount
+        $scope.endPage=$scope.beginPage+9;
     }
     
     $scope.loadPages=function(){
@@ -27,29 +27,30 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
         initVars();
         $scope.data=newData;
         $scope.maxPage=Math.ceil($scope.data.totalCount/$scope.pageSize);
-        $scope.endPage=Math.min(7,$scope.maxPage);
+        $scope.endPage=Math.min(10,$scope.maxPage);
         $scope.loadPages();
     }
     
     $scope.isLeftLoadable=function(newPage){
-        return $scope.selectedPage- newPage>0 && $scope.beginPage>1;
+        return newPage< Math.floor(($scope.endPage+$scope.beginPage)/2);
     }
     
     $scope.isRightLoadable=function(newPage){
-        return newPage-$scope.selectedPage >0 && $scope.endPage<$scope.maxPage;
+        return newPage > Math.floor(($scope.endPage+$scope.beginPage)/2);
     }
     
     $scope.selectPage=function(newPage){
+        
         if(newPage<$scope.selectedPage && $scope.isLeftLoadable(newPage)){
-            var lastBeginPage=angular.copy($scope.beginPage);
-            $scope.beginPage= Math.max($scope.beginPage-($scope.selectedPage-newPage),1);
-            $scope.endPage-=lastBeginPage-$scope.beginPage;
+            var rankToDecrease=Math.min(4,newPage-1);
+            $scope.beginPage=newPage-rankToDecrease;
+            $scope.endPage=$scope.beginPage+9;
             $scope.loadPages();
         }
         if(newPage>$scope.selectedPage && $scope.isRightLoadable(newPage)){
-            var lastEndPage=angular.copy($scope.endPage);
-            $scope.endPage= Math.min($scope.endPage+(newPage-$scope.selectedPage),$scope.maxPage);
-            $scope.beginPage+=$scope.endPage-lastEndPage;
+            var rankToIncrease=Math.min(5,$scope.maxPage-newPage);
+            $scope.endPage=newPage+rankToIncrease;
+            $scope.beginPage=$scope.endPage-9;
             $scope.loadPages();
         }
         $scope.selectedPage=newPage;
