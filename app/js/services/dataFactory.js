@@ -1,4 +1,7 @@
-angular.module('app')
+(function () {
+    'use strict';
+    
+    angular.module('app')
        .factory('dataFactory', function ($http,API_BASE_URL) {
            
             var factoryVars = {
@@ -30,4 +33,5 @@ angular.module('app')
                     return factoryVars.data;
                 }
             };
-});
+    });
+})()
