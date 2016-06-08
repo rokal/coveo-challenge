@@ -7,13 +7,15 @@ angular.module('app',["ngResource","ngRoute"])
             return millisecs/1000 +" sec";
         }
     })
-    .config(['$routeProvider',
+    .config(['$routeProvider','$compileProvider',
     function config( $routeProvider) {
-      $routeProvider.
-        when("/", {
-            templateUrl: "./partials/mainView.html",
-            controller: "appCtrl"
-        }).
-        otherwise({ redirectTo: '/' });
+        $compileProvider.debugInfoEnabled(false);
+        
+        $routeProvider.
+            when("/", {
+                templateUrl: "./partials/mainView.html",
+                controller: "appCtrl"
+            }).
+            otherwise({ redirectTo: '/' });
     }
   ]);;
