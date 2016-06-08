@@ -9,7 +9,6 @@
         dataFactory.updateData();
         
         $scope.search=function () {
-            console.log("searching for "+$scope.query.q);
             dataFactory.updateData($scope.query);
         }
         
