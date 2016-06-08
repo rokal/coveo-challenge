@@ -8,7 +8,7 @@ angular.module('app',["ngResource","ngRoute"])
         }
     })
     .config(['$routeProvider','$compileProvider',
-    function config( $routeProvider) {
+    function config( $routeProvider,$compileProvider) {
         $compileProvider.debugInfoEnabled(false);
         
         $routeProvider.
