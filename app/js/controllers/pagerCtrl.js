@@ -2,8 +2,7 @@ angular.module('app')
        .controller('pagerCtrl',pagerCtrl);
 
 function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
-    
-    $scope.pageSize=6;// to bind with the view
+   
     $scope.data=[];
     
     
@@ -29,6 +28,7 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
             $scope.actionNewPage=false;
             initVars();
             $scope.data=newData;
+            $scope.pageSize=$scope.data.results.length;
             $scope.maxPage=Math.ceil($scope.data.totalCount/$scope.pageSize);
             $scope.endPage=Math.min(10,$scope.maxPage);
             $scope.loadPages();
