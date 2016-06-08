@@ -45,10 +45,24 @@
                         </span>
                         <span class="label label-danger">{{result.raw.tpcategorie}}</span>
                         <span class="label label-warning">produit par {{result.raw.tpproducteur}} <br/></span>
-                        <!--<span class="bg-success tag"><i class="ion-information-circled"></i></span>-->
                     </div>
                 </div>
                 <ng-include src="'./partials/pager.html'"></ng-include>
             </div>
-            
+            <div class="col-md-3">
+                <div class="form-group col-md-12">
+                    <label class="form-control-label" for="sort">sort   by :  </label>
+                    <select  ng-model="query.sortField" ng-change="search()" >
+                        <option value="@tpmillesime" ng-selected>Millésime  </option>
+                        <option value="@tpprixnum">Prix </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="form-control-label" for="order">order by:</label>  
+                    <select ng-model="query.sortCriteria" ng-change="search()">
+                        <option value="fielddescending" ng-selected>descendant</option>
+                        <option value="fieldascending">ascendant</option>
+                    </select>
+                </div>
+            </div>
         </div>

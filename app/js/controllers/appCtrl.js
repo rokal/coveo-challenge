@@ -17,5 +17,6 @@ function appCtrl(dataFactory,$scope){
         if (newValue !== oldValue) $scope.data = newValue;
     });
     
+    
 }
         

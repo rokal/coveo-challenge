@@ -13,8 +13,9 @@ angular.module('app')
                 
                 updateData:function(arg){
                     if(angular.isDefined(arg)){
-                        var key=Object.keys(arg)[0];
-                        factoryVars.queryObj[key]=arg[key];
+                        angular.forEach(arg,function (key,val) {
+                            factoryVars.queryObj[val]=key;
+                        });
                         console.log(factoryVars.queryObj);
                     }
                    
