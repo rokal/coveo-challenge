@@ -6,6 +6,7 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     $scope.pageSize=6;// to bind with the view
     $scope.data=[];
     
+    
     $scope.$watch(function () { return dataFactory.getData(); }, function (newValue, oldValue) {
         if (newValue !== oldValue) $scope.updateView(newValue);
     });
@@ -24,11 +25,14 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     }
     
     $scope.updateView=function (newData) {
-        initVars();
-        $scope.data=newData;
-        $scope.maxPage=Math.ceil($scope.data.totalCount/$scope.pageSize);
-        $scope.endPage=Math.min(10,$scope.maxPage);
-        $scope.loadPages();
+        if(!$scope.actionNewPage){
+            $scope.actionNewPage=false;
+            initVars();
+            $scope.data=newData;
+            $scope.maxPage=Math.ceil($scope.data.totalCount/$scope.pageSize);
+            $scope.endPage=Math.min(10,$scope.maxPage);
+            $scope.loadPages();
+        }
     }
     
     $scope.isLeftLoadable=function(newPage){
@@ -37,6 +41,12 @@ function pagerCtrl(dataFactory,$scope,CSS_ACTIVE_CLASS){
     
     $scope.isRightLoadable=function(newPage){
         return newPage > Math.floor(($scope.endPage+$scope.beginPage)/2);
+    }
+    
+    $scope.queryNewPage=function(pageNum,actionNewPage){
+        $scope.actionNewPage=actionNewPage;
+        this.selectPage(pageNum);
+        dataFactory.updateData({firstResult:(pageNum-1)*$scope.pageSize});
     }
     
     $scope.selectPage=function(newPage){

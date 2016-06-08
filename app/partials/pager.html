@@ -7,7 +7,7 @@
             </a>
         </li>
         <li ng-class="getPageClass(item)" class="page-item" ng-repeat="item in pages">
-            <a ng-click="selectPage(item)" href="" class="page-link" >{{item}} </a>
+            <a ng-click="queryNewPage(item,true)" href="" class="page-link" >{{item}} </a>
         </li>
         
         <li class="page-item" ng-class="nextDisabled()" >
