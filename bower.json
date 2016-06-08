@@ -19,6 +19,7 @@
     "angular-mocks": "^1.5.6",
     "angular-resource": "^1.5.6",
     "bootstrap": "v4.0.0-alpha.2",
-    "Ionicons": "ionicons#^2.0.1"
+    "Ionicons": "ionicons#^2.0.1",
+    "angular-route": "^1.5.6"
   }
 }

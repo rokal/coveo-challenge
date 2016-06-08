@@ -1,0 +1,44 @@
+<nav class="navbar navbar-light" >
+            <div class="container">
+                <div class="input-group input-group-lg" id="search-bar">
+                    <input type="text" class="form-control" placeholder="Search for..." ng-model="query.q">
+                    <span class="input-group-btn ">
+                        <button class="btn btn-info " type="button" ng-click="search()">
+                            <span ng-hide="searching" class="ion-search"></span>
+                            <span ng-show="searching" class="ion-load-a"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+        </nav>
+                
+        <div class="container">
+            <div class="col-md-9 col-md-offset-3 result m-b-1" >
+                <span class="m-r-2">
+                    Results: <strong>{{data.query.firstResult+1|number}}-{{data.query.firstResult+data.results.length|number}}</strong>
+                </span>
+                <span class="center" ng-hide="searching">
+                    <strong>{{data.totalCount|number}} </strong>total found in <strong>{{data.duration | secs}}</strong> 
+                </span>
+                <span ng-show="searching" class="ion-load-b display-1"></span>
+            </div>
+            <div class="col-md-9">
+                <div class="col-md-6 card " ng-repeat="result in data.results">
+                    <img class="card-img-top center-block" ng-src="{{result.raw.tpthumbnailuri}}" alt="drink phto">
+                    <div class="card-block">
+                        <a target="_blank" ng-href="{{result.raw.sysclickableuri}}">{{result.title}}</a><br/>
+                        <span  class="label label-success tag ion-wineglass " ng-show="{{result.raw.tpparticularitedeservice.length}}">  
+                            {{result.raw.tpparticularitedeservice}} {{result.raw.tptemperaturedeservice}} <br/></span>
+                        <span class="label label-default">{{result.raw.tppays}} ({{result.raw.tpregion}}) en {{result.raw.tpmillesime}} | 
+                            {{result.raw.tpformat }} | {{result.raw.tpprixnormal }} {{result.row.tpnouveaute}}
+                        </span>
+                        <span class="label label-danger">{{result.raw.tpcategorie}}</span>
+                        <span class="label label-warning">produit par {{result.raw.tpproducteur}} <br/></span>
+                        <!--<span class="bg-success tag"><i class="ion-information-circled"></i></span>-->
+                    </div>
+                </div>
+                <ng-include src="'./partials/pager.html'"></ng-include>
+            </div>
+            
+        </div>
