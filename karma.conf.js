@@ -16,10 +16,14 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     
     files: [
-      './app/bower_components/angular/angular.min.js',
+      './app/bower_components/angular/angular.js',
       './app/bower_components/angular-mocks/angular-mocks.js',
       './app/bower_components/angular-resource/angular-resource.js',
-      './app/*.js',
+      './app/bower_components/angular-route/angular-route.js',
+      './app/js/appModule.js',
+      './app/js/services/dataFactory.js',
+      './app/js/controllers/appCtrl.js',
+      './app/js/controllers/pagerCtrl.js',
       './tests/*.js'
     ],
 
